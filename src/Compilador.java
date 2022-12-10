@@ -26,10 +26,7 @@ import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-/**
- *
- * @author yisus
- */
+
 public class Compilador extends javax.swing.JFrame {
 
     private String title;
