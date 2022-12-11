@@ -63,13 +63,13 @@ class Lexer {
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\11\0\1\1\1\2\1\3\1\1\1\4\22\0\1\1"+
-    "\1\5\6\0\1\6\1\7\1\10\4\0\1\11\1\12"+
-    "\11\13\2\0\1\14\1\0\1\15\2\0\32\16\4\0"+
-    "\1\16\1\0\32\16\12\0\1\3\73\0\1\16\7\0"+
-    "\1\16\3\0\1\16\3\0\1\16\1\0\1\16\6\0"+
-    "\1\16\1\0\1\16\4\0\1\16\7\0\1\16\3\0"+
-    "\1\16\3\0\1\16\1\0\1\16\6\0\1\16\1\0"+
-    "\1\16\u012b\0\2\3\326\0\u0100\3";
+    "\1\5\6\0\1\6\1\7\1\10\1\0\1\11\2\0"+
+    "\1\12\1\13\11\14\2\0\1\15\1\0\1\16\2\0"+
+    "\32\17\4\0\1\17\1\0\32\17\12\0\1\3\73\0"+
+    "\1\17\7\0\1\17\3\0\1\17\3\0\1\17\1\0"+
+    "\1\17\6\0\1\17\1\0\1\17\4\0\1\17\7\0"+
+    "\1\17\3\0\1\17\3\0\1\17\1\0\1\17\6\0"+
+    "\1\17\1\0\1\17\u012b\0\2\3\326\0\u0100\3";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1024];
@@ -97,10 +97,10 @@ class Lexer {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\2\2\3\1\2\3\1\1\1\4\1\2"+
-    "\1\5\1\0\1\6\3\0\1\2";
+    "\1\5\1\0\2\6\2\7\1\3\1\10\3\0\1\2";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[19];
+    int [] result = new int[24];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -125,12 +125,12 @@ class Lexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\17\0\17\0\36\0\55\0\74\0\113\0\17"+
-    "\0\132\0\151\0\170\0\207\0\17\0\226\0\17\0\245"+
-    "\0\264\0\303\0\245";
+    "\0\0\0\20\0\20\0\40\0\60\0\100\0\120\0\140"+
+    "\0\160\0\200\0\220\0\240\0\20\0\260\0\300\0\320"+
+    "\0\340\0\360\0\u0100\0\20\0\u0110\0\u0120\0\u0130\0\u0110";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[19];
+    int [] result = new int[24];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -153,15 +153,19 @@ class Lexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\2\3\1\0\1\4\1\5\1\2\1\6\1\2"+
-    "\1\7\1\10\1\11\1\12\1\2\1\13\21\0\1\3"+
-    "\21\0\1\14\26\0\1\15\11\0\1\16\20\0\2\11"+
-    "\11\0\1\17\22\0\2\13\2\0\1\13\2\14\1\3"+
-    "\1\14\1\4\12\14\10\20\1\21\16\20\1\22\16\20"+
-    "\1\22\1\23\15\20\1\22\1\3\5\20";
+    "\1\2\2\3\1\0\1\4\1\5\1\2\1\6\2\2"+
+    "\1\7\1\10\1\11\1\12\1\2\1\13\22\0\1\3"+
+    "\22\0\1\14\30\0\1\15\11\0\1\16\22\0\1\17"+
+    "\1\20\2\0\1\21\11\0\1\22\1\0\2\23\2\0"+
+    "\1\21\6\0\1\24\24\0\2\13\2\0\1\13\2\14"+
+    "\1\3\1\14\1\4\13\14\10\25\1\26\7\25\13\0"+
+    "\1\17\1\20\14\0\1\17\1\0\1\17\1\20\22\0"+
+    "\1\21\13\0\2\22\2\0\1\21\13\0\2\23\2\0"+
+    "\1\21\10\25\1\27\17\25\1\27\1\25\1\30\15\25"+
+    "\1\27\1\25\1\3\5\25";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[210];
+    int [] result = new int[320];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -204,11 +208,11 @@ class Lexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\2\11\4\1\1\11\4\1\1\11\1\0\1\11"+
-    "\3\0\1\1";
+    "\1\0\2\11\11\1\1\11\1\0\5\1\1\11\3\0"+
+    "\1\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[19];
+    int [] result = new int[24];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -687,32 +691,42 @@ class Lexer {
             { return token(yytext(), "Error", yyline, yycolumn);
             }
             // fall through
-          case 7: break;
+          case 9: break;
           case 2:
             { /*Ignorar*/
             }
             // fall through
-          case 8: break;
+          case 10: break;
           case 3:
             { return token(yytext(), "NUMERO", yyline, yycolumn);
             }
             // fall through
-          case 9: break;
+          case 11: break;
           case 4:
             { return token(yytext(), "IDENTIFICADOR", yyline, yycolumn);
             }
             // fall through
-          case 10: break;
+          case 12: break;
           case 5:
             { return token(yytext(), "LLAVE_CERRADA", yyline, yycolumn);
             }
             // fall through
-          case 11: break;
+          case 13: break;
           case 6:
+            { return token(yytext(), "ERROR_2", yyline, yycolumn);
+            }
+            // fall through
+          case 14: break;
+          case 7:
+            { return token(yytext(), "ERROR_1", yyline, yycolumn);
+            }
+            // fall through
+          case 15: break;
+          case 8:
             { return token(yytext(), "LLAVE_ABIERTA", yyline, yycolumn);
             }
             // fall through
-          case 12: break;
+          case 16: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
