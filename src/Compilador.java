@@ -39,9 +39,7 @@ public class Compilador extends javax.swing.JFrame {
     private HashMap<String, String> identificadores;
     private boolean codeHasBeenCompiled = false;
 
-    /**
-     * Creates new form Compilador
-     */
+   
     public Compilador() {
         initComponents();
         init();
@@ -60,7 +58,7 @@ public class Compilador extends javax.swing.JFrame {
             }
         });
         Functions.setLineNumberOnJTextComponent(jtpCode);
-        timerKeyReleased = new Timer((int) (1000 * 0.3), (ActionEvent e) -> {
+        timerKeyReleased = new Timer((int) (1000 * 0.01), (ActionEvent e) -> {
             timerKeyReleased.stop();
             colorAnalysis();
         });
@@ -102,6 +100,11 @@ public class Compilador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
+        rootPanel.setBackground(new java.awt.Color(102, 102, 102));
+
+        jtpCode.setBackground(new java.awt.Color(51, 51, 51));
+        jtpCode.setForeground(new java.awt.Color(255, 255, 255));
+        jtpCode.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jtpCode);
 
         jtaOutputConsole.setEditable(false);
@@ -110,6 +113,8 @@ public class Compilador extends javax.swing.JFrame {
         jtaOutputConsole.setRows(5);
         jScrollPane2.setViewportView(jtaOutputConsole);
 
+        tblTokens.setBackground(new java.awt.Color(51, 51, 51));
+        tblTokens.setForeground(new java.awt.Color(255, 255, 255));
         tblTokens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -380,7 +385,7 @@ public class Compilador extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println("Error Al guardar " + ex.getMessage());
         }
-        Functions.colorTextPane(textsColor, jtpCode, new Color(40, 40, 40));
+        Functions.colorTextPane(textsColor, jtpCode, new Color(255, 255, 255));
     }
 
     private void fillTableTokens() {
@@ -401,7 +406,7 @@ public class Compilador extends javax.swing.JFrame {
             }
             jtaOutputConsole.setText("...\n" + strErrors + "\nLa compilación terminó con errores...");
         } else {
-            jtaOutputConsole.setText("Sin Errores");
+            jtaOutputConsole.setText("...");
         }
         jtaOutputConsole.setCaretPosition(0);
     }
@@ -420,31 +425,7 @@ public class Compilador extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Compilador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Compilador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Compilador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Compilador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+     
         java.awt.EventQueue.invokeLater(() -> {
             try {
                 UIManager.setLookAndFeel(new FlatIntelliJLaf());
