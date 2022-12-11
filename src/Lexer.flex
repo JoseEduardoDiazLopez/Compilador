@@ -36,7 +36,7 @@ Numero = 0 | [1-9][0-9]*
 {Comentario}|{EspacioEnBlanco} { /*Ignorar*/ }
 /* ------------------------------------------------------------ */
 /* IDENTIFICADOR*/
-{Identificador} { return token(yytext(), "IDENTIFICADOR", yyline, yycolumn); }
+@{Identificador} { return token(yytext(), "IDENTIFICADOR", yyline, yycolumn); }
 /* TIPOS DE DATO */
 C |
 CAD |
@@ -100,9 +100,13 @@ CHANGE |
 v |
 f { return token(yytext(), "PALABRA_RESERVADA", yyline, yycolumn); }
 
+/* FUNCION */
+{Letra}({Letra}|{Digito})* "()" {return token(yytext(), "FUNCION", yyline, yycolumn); }
+
 /*ERRORES*/
+
 /*identificador no valido*/
-{Numero}{Letra}* { return token(yytext(), "ERROR_1", yyline, yycolumn); }
+@{Numero}{Letra}* { return token(yytext(), "ERROR_1", yyline, yycolumn); }
 /*numero no valido*/
 0{Numero}* { return token(yytext(), "ERROR_2", yyline, yycolumn); }
 
