@@ -36,6 +36,8 @@ Numero = 0 | [1-9][0-9]*
 {Comentario} { return textColor(yychar, yylength(), new Color(255, 255, 255)); }
 {EspacioEnBlanco} { /*Ignorar*/ }
 
+
+
 /* ------------------------------------------------------------ */
 /* IDENTIFICADOR*/
 @{Identificador} { return textColor(yychar, yylength(), new Color(53, 255, 249)); }
