@@ -386,6 +386,7 @@ public class Compilador extends javax.swing.JFrame {
             System.out.println("Error Al guardar " + ex.getMessage());
         } 
         
+        
         Functions.colorTextPane(textsColor, jtpCode, new Color(255, 255, 255));
     }
 

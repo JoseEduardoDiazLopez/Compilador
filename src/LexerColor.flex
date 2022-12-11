@@ -11,6 +11,8 @@ import java.awt.Color;
     }
 %}
 /* Variables básicas de comentarios y espacios */
+
+
 TerminadorDeLinea = \r|\n|\r\n
 EntradaDeCaracter = [^\r\n]
 EspacioEnBlanco = {TerminadorDeLinea} | [ \t\f]

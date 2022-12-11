@@ -9,6 +9,7 @@ import compilerTools.Token;
 @SuppressWarnings("FallThrough")
 class Lexer {
 
+    
   /** This character denotes the end of file. */
   public static final int YYEOF = -1;
 
