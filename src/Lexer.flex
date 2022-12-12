@@ -99,7 +99,6 @@ Conds { return token(yytext(), "SEGUIR_CONDICIONAL", yyline, yycolumn); }
 Mientras  { return token(yytext(), "CICLO_WHILE", yyline, yycolumn); }
 Ciclar  { return token(yytext(), "CICLO_FOR", yyline, yycolumn); }
 Hacer  { return token(yytext(), "CICLO_DOWHILE", yyline, yycolumn); }
-
 Este |
 Devolver |
 CHANGE |
