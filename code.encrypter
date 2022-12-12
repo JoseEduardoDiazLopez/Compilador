@@ -1,7 +1,6 @@
 Z @A EQU 1 !
-Z   @B EQU 2!
-Z  @C EQU 3!
-Z @D EQU !
-Z !
+Z @B EQU 2!
+Z @C EQU 3!
+Z @D EQU 1
 
-F_Cabrerapendejo()
+F_sumar(@a)

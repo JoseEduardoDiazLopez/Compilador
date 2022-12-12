@@ -108,8 +108,9 @@ public class Compilador extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtpCode);
 
         jtaOutputConsole.setEditable(false);
-        jtaOutputConsole.setBackground(new java.awt.Color(255, 255, 255));
+        jtaOutputConsole.setBackground(new java.awt.Color(51, 51, 51));
         jtaOutputConsole.setColumns(20);
+        jtaOutputConsole.setForeground(new java.awt.Color(255, 255, 255));
         jtaOutputConsole.setRows(5);
         jScrollPane2.setViewportView(jtaOutputConsole);
 
@@ -380,7 +381,13 @@ public class Compilador extends javax.swing.JFrame {
            gramatica.group("PARAMETROS", "VALOR{COMA VALOR}+");
            
            //FUNCIONES
-           gramatica.group("FUNCIONES", "FUNCION ABRE_PARENTESIS PARAMETROS CIERRA_PARENTESIS",true);
+           gramatica.group("FUNCIONES", "FUNCION ABRE_PARENTESIS (VALORES | PARAMETROS)? CIERRA_PARENTESIS",true);
+           //parentesis abrir
+           gramatica.group("FUNCIONES", "FUNCION (VALORES | PARAMETROS)? CIERRA_PARENTESIS",true,
+                   7,"Error sintáctico {}: falta abrir parentesis  (Linea: # )");
+           //parentesis cerrar 
+           gramatica.group("FUNCIONES", " FUNCION ABRE_PARENTESIS(VALORES | PARAMETROS)? ",true,
+                   8,"Error sintáctico {}: falta cerrar parentesis  (Linea: # )");
            
         /* Mostrar gramáticas */
         gramatica.show();
