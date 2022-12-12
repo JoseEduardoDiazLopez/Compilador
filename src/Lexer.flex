@@ -89,7 +89,7 @@ AZUL { return token(yytext(), "COLOR", yyline, yycolumn); }
 /*PUNTUACION */
 "!" { return token(yytext(), "FIN_DE_SENTENCIA", yyline, yycolumn); }
 
-"," { return token(yytext(), "COMA", yyline, yycolumn); }
+, { return token(yytext(), "COMA", yyline, yycolumn); }
 "(" { return token(yytext(), "ABRE_PARENTESIS", yyline, yycolumn); }
 ")" { return token(yytext(), "CIERRA_PARENTESIS", yyline, yycolumn); }
 /*PALABRAS RESERVADAS*/

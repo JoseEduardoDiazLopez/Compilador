@@ -377,8 +377,14 @@ public class Compilador extends javax.swing.JFrame {
                    6,"Error sintáctico {}: falta tipo de dato en la declaracion (Linea: # )");
            
            /* agrupar identificadores y parametros */
-           gramatica.group("VALORES", "IDENTIFICADOR",true);
-           gramatica.group("PARAMETROS", "VALOR{COMA VALOR}+");
+            gramatica.group("VALORES", "IDENTIFICADOR");
+           gramatica.group("PARAMETROS", "VALORES (COMA VALORES)+");
+           
+            //ASIGNAR VALOR A VARIABLE COMPUESTA
+           gramatica.group("VARIABLE2","TIPO_DE_DATO IDENTIFICADOR OPERADOR_ASIGNACION VALORES "
+                   + "(OPERADOR_MAS | OPERADOR_MENOS | OPERADOR_MULTIPLICAR | OPERADOR_DIVIDIR ) VALORES FIN_DE_SENTENCIA",true);
+           
+           gramatica.group("INSTRUCIONES","(VARIABLE | VARIABLE2 | .)");
            
            //FUNCIONES
            gramatica.group("FUNCIONES", "FUNCION ABRE_PARENTESIS (VALORES | PARAMETROS)? CIERRA_PARENTESIS",true);
@@ -388,6 +394,12 @@ public class Compilador extends javax.swing.JFrame {
            //parentesis cerrar 
            gramatica.group("FUNCIONES", " FUNCION ABRE_PARENTESIS(VALORES | PARAMETROS)? ",true,
                    8,"Error sintáctico {}: falta cerrar parentesis  (Linea: # )");
+           
+           
+           
+          
+           
+          
            
         /* Mostrar gramáticas */
         gramatica.show();
@@ -441,9 +453,9 @@ public class Compilador extends javax.swing.JFrame {
                 String strError = String.valueOf(error);
                 strErrors += strError + "\n";
             }
-            jtaOutputConsole.setText("Compilación terminada...\n" + strErrors + "\nLa compilación terminó con errores...");
+            jtaOutputConsole.setText("Compilación lista\n" + strErrors + "\n La compilación terminó con ERRORES...");
         } else {
-            jtaOutputConsole.setText("Compilación terminada...");
+            jtaOutputConsole.setText("Compilación sin errores\n");
         }
         jtaOutputConsole.setCaretPosition(0);
     }
