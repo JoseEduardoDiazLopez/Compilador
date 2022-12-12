@@ -1,1 +1,5 @@
-@A
+Z @A EQU 1  
+Z    EQU 2!
+Z  @C  3!
+Z @D EQU !
+Z

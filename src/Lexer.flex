@@ -48,7 +48,7 @@ Z |
 R |
 Q |
 D | 
-VOF { return token(yytext(), "Tipo_De_Dato", yyline, yycolumn); }
+VOF { return token(yytext(), "TIPO_DE_DATO", yyline, yycolumn); }
 
 /* NUMERO*/
  0 | [1-9][0-9]* { return token(yytext(), "NUMERO", yyline, yycolumn); }
@@ -87,7 +87,7 @@ AZUL { return token(yytext(), "COLOR", yyline, yycolumn); }
 "MEN1" { return token(yytext(), "OPERADOR_DECREMENTO", yyline, yycolumn); }
 
 /*PUNTUACION */
-"!!" { return token(yytext(), "FIN_DE_SENTENCIA", yyline, yycolumn); }
+"!" { return token(yytext(), "FIN_DE_SENTENCIA", yyline, yycolumn); }
 
 /*PALABRAS RESERVADAS*/
 
@@ -113,4 +113,4 @@ f { return token(yytext(), "PALABRA_RESERVADA", yyline, yycolumn); }
 /*numero no valido*/
 0{Numero}* { return token(yytext(), "ERROR_2", yyline, yycolumn); }
 
-. { return token(yytext(), "Error", yyline, yycolumn); }
+. { return token(yytext(), "ERROR_3", yyline, yycolumn); }

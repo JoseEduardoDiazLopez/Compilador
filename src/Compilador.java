@@ -163,7 +163,7 @@ public class Compilador extends javax.swing.JFrame {
                         .addComponent(btnCompilar)
                         .addGap(101, 101, 101)
                         .addComponent(btnEjecutar)
-                        .addGap(0, 168, Short.MAX_VALUE))
+                        .addGap(0, 251, Short.MAX_VALUE))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
@@ -353,7 +353,25 @@ public class Compilador extends javax.swing.JFrame {
 
     private void syntacticAnalysis() {
         Grammar gramatica = new Grammar(tokens, errors);
-
+          /* Eliminar errores */
+          gramatica.delete(new String[]{"ERROR_1","ERROR_2","ERROR_3"},1);
+            /* agrupar valores */
+          gramatica.group("VALORES","(NUMERO | COLOR)",true);
+           /* declarar variable */
+           gramatica.group("VARIABLE","TIPO_DE_DATO IDENTIFICADOR OPERADOR_ASIGNACION VALORES FIN_DE_SENTENCIA",true);
+           //No !
+           gramatica.group("VARIABLE","TIPO_DE_DATO IDENTIFICADOR OPERADOR_ASIGNACION VALORES ",true,
+                   2,"Error sintáctico: falta ! en la declaracion de variable (Linea: # )");
+           // no identificador
+           gramatica.group("VARIABLE","TIPO_DE_DATO OPERADOR_ASIGNACION VALORES FIN_DE_SENTENCIA",true,
+                   2,"Error sintáctico: falta identificador en la declaracion (Linea: # )");
+           //no valor
+           gramatica.group("VARIABLE","TIPO_DE_DATO IDENTIFICADOR OPERADOR_ASIGNACION FIN_DE_SENTENCIA",true,
+                   2,"Error sintáctico: falta VALOR en la declaracion (Linea: # )");
+           //no op asignacion
+           gramatica.group("VARIABLE","TIPO_DE_DATO IDENTIFICADOR VALORES FIN_DE_SENTENCIA",true,
+                   2,"Error sintáctico: falta operador de asignacion en la declaracion (Linea: # )");
+           
         /* Mostrar gramáticas */
         gramatica.show();
     }
@@ -406,9 +424,9 @@ public class Compilador extends javax.swing.JFrame {
                 String strError = String.valueOf(error);
                 strErrors += strError + "\n";
             }
-            jtaOutputConsole.setText("...\n" + strErrors + "\nLa compilación terminó con errores...");
+            jtaOutputConsole.setText("Compilación terminada...\n" + strErrors + "\nLa compilación terminó con errores...");
         } else {
-            jtaOutputConsole.setText("...");
+            jtaOutputConsole.setText("Compilación terminada...");
         }
         jtaOutputConsole.setCaretPosition(0);
     }

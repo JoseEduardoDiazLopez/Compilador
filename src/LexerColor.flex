@@ -13,6 +13,7 @@ import java.awt.Color;
 /* Variables básicas de comentarios y espacios */
 
 
+
 TerminadorDeLinea = \r|\n|\r\n
 EntradaDeCaracter = [^\r\n]
 EspacioEnBlanco = {TerminadorDeLinea} | [ \t\f]
@@ -54,7 +55,7 @@ D |
 VOF { return textColor(yychar, yylength(), new Color(255, 198, 6)); }
 
 /* NUMERO*/
- 0 | [1-9][0-9]* { return textColor(yychar, yylength(), new Color(255, 255, 255)); }
+ 0 | [1-9][0-9]* { return textColor(yychar, yylength(), new Color(255, 255, 0)); }
 
 /*COLORES*/
 BLANCO |
@@ -72,7 +73,7 @@ AZUL { return textColor(yychar, yylength(), new Color(116, 254, 1)); }
 
 /*OPERADORES DE AGRUPACION*/
 "<(" |
-")>" { return textColor(yychar, yylength(), new Color(255, 255, 255)); }
+")>" { return textColor(yychar, yylength(), new Color(214,88, 245)); }
 
 
 /*OPERADORES */
@@ -90,7 +91,7 @@ MAS1 |
 MEN1 { return textColor(yychar, yylength(), new Color(116, 254, 1)); }
 
 /*PUNTUACION */
-"!!" { return textColor(yychar, yylength(), new Color(200, 70, 255)); }
+"!" { return textColor(yychar, yylength(), new Color(190, 66, 0)); }
 
 /*PALABRAS RESERVADAS*/
 
@@ -115,4 +116,4 @@ f { return textColor(yychar, yylength(), new Color(255, 198, 6)); }
 /*numero no valido*/
 0{Numero}* { return textColor(yychar, yylength(), new Color(255, 5, 5)); }
 
-. { return textColor(yychar, yylength(), new Color(255, 255, 255)); }
+. { return textColor(yychar, yylength(), new Color(255, 0, 0)); }

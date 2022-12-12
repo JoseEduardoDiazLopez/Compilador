@@ -9,7 +9,6 @@ import compilerTools.Token;
 @SuppressWarnings("FallThrough")
 class Lexer {
 
-    
   /** This character denotes the end of file. */
   public static final int YYEOF = -1;
 
@@ -103,14 +102,14 @@ class Lexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\2\2\3\1\2\3\4\1\2\4\7\1"+
-    "\1\5\1\1\2\4\2\1\1\6\1\7\1\2\1\10"+
-    "\1\0\1\11\1\12\2\13\1\14\34\0\1\15\6\0"+
-    "\1\16\2\0\1\17\4\0\1\20\1\21\1\22\3\0"+
-    "\1\23\4\0\1\2\1\0\1\24\3\0\1\25\3\0"+
-    "\1\24\1\0\1\26\1\27\3\0\1\24\5\0\1\30"+
-    "\1\0\1\31\1\0\1\32\1\33\4\0\1\34\6\0"+
-    "\1\35";
+    "\1\0\1\1\2\2\1\3\2\1\2\4\4\1\2\5"+
+    "\7\1\1\6\1\1\2\5\2\1\1\7\1\10\1\2"+
+    "\1\11\1\0\1\12\1\13\2\14\1\15\34\0\1\16"+
+    "\6\0\1\17\2\0\1\20\4\0\1\21\1\22\1\23"+
+    "\3\0\1\24\4\0\1\2\1\0\1\25\3\0\1\26"+
+    "\3\0\1\25\1\0\1\27\1\30\3\0\1\25\5\0"+
+    "\1\31\1\0\1\32\1\0\1\33\1\34\4\0\1\35"+
+    "\6\0\1\36";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[133];
@@ -811,150 +810,155 @@ class Lexer {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { return token(yytext(), "Error", yyline, yycolumn);
+            { return token(yytext(), "ERROR_3", yyline, yycolumn);
             }
             // fall through
-          case 30: break;
+          case 31: break;
           case 2:
             { /*Ignorar*/
             }
             // fall through
-          case 31: break;
-          case 3:
-            { return token(yytext(), "NUMERO", yyline, yycolumn);
-            }
-            // fall through
           case 32: break;
-          case 4:
-            { return token(yytext(), "Tipo_De_Dato", yyline, yycolumn);
+          case 3:
+            { return token(yytext(), "FIN_DE_SENTENCIA", yyline, yycolumn);
             }
             // fall through
           case 33: break;
-          case 5:
-            { return token(yytext(), "OPERADOR_OR", yyline, yycolumn);
+          case 4:
+            { return token(yytext(), "NUMERO", yyline, yycolumn);
             }
             // fall through
           case 34: break;
-          case 6:
-            { return token(yytext(), "OPERADOR_AND", yyline, yycolumn);
+          case 5:
+            { return token(yytext(), "TIPO_DE_DATO", yyline, yycolumn);
             }
             // fall through
           case 35: break;
-          case 7:
-            { return token(yytext(), "PALABRA_RESERVADA", yyline, yycolumn);
+          case 6:
+            { return token(yytext(), "OPERADOR_OR", yyline, yycolumn);
             }
             // fall through
           case 36: break;
-          case 8:
-            { return token(yytext(), "LLAVE_CERRADA", yyline, yycolumn);
+          case 7:
+            { return token(yytext(), "OPERADOR_AND", yyline, yycolumn);
             }
             // fall through
           case 37: break;
-          case 9:
-            { return token(yytext(), "ERROR_2", yyline, yycolumn);
+          case 8:
+            { return token(yytext(), "PALABRA_RESERVADA", yyline, yycolumn);
             }
             // fall through
           case 38: break;
-          case 10:
-            { return token(yytext(), "LLAVE_ABIERTA", yyline, yycolumn);
+          case 9:
+            { return token(yytext(), "LLAVE_CERRADA", yyline, yycolumn);
             }
             // fall through
           case 39: break;
-          case 11:
-            { return token(yytext(), "ERROR_1", yyline, yycolumn);
+          case 10:
+            { return token(yytext(), "ERROR_2", yyline, yycolumn);
             }
             // fall through
           case 40: break;
-          case 12:
-            { return token(yytext(), "IDENTIFICADOR", yyline, yycolumn);
+          case 11:
+            { return token(yytext(), "LLAVE_ABIERTA", yyline, yycolumn);
             }
             // fall through
           case 41: break;
-          case 13:
-            { return token(yytext(), "FUNCION", yyline, yycolumn);
+          case 12:
+            { return token(yytext(), "ERROR_1", yyline, yycolumn);
             }
             // fall through
           case 42: break;
-          case 14:
-            { return token(yytext(), "OPERADOR_DIFERENTEQUE", yyline, yycolumn);
+          case 13:
+            { return token(yytext(), "IDENTIFICADOR", yyline, yycolumn);
             }
             // fall through
           case 43: break;
-          case 15:
-            { return token(yytext(), "OPERADOR_ASIGNACION", yyline, yycolumn);
+          case 14:
+            { return token(yytext(), "FUNCION", yyline, yycolumn);
             }
             // fall through
           case 44: break;
-          case 16:
-            { return token(yytext(), "OPERADOR_MAS", yyline, yycolumn);
+          case 15:
+            { return token(yytext(), "OPERADOR_DIFERENTEQUE", yyline, yycolumn);
             }
             // fall through
           case 45: break;
-          case 17:
-            { return token(yytext(), "OPERADOR_MAYORQUE", yyline, yycolumn);
+          case 16:
+            { return token(yytext(), "OPERADOR_ASIGNACION", yyline, yycolumn);
             }
             // fall through
           case 46: break;
-          case 18:
-            { return token(yytext(), "OPERADOR_MENORQUE", yyline, yycolumn);
+          case 17:
+            { return token(yytext(), "OPERADOR_MAS", yyline, yycolumn);
             }
             // fall through
           case 47: break;
-          case 19:
-            { return token(yytext(), "OPERADOR_MULTIPLICAR", yyline, yycolumn);
+          case 18:
+            { return token(yytext(), "OPERADOR_MAYORQUE", yyline, yycolumn);
             }
             // fall through
           case 48: break;
-          case 20:
-            { return token(yytext(), "COLOR", yyline, yycolumn);
+          case 19:
+            { return token(yytext(), "OPERADOR_MENORQUE", yyline, yycolumn);
             }
             // fall through
           case 49: break;
-          case 21:
-            { return token(yytext(), "INICIO_CONDICIONAL", yyline, yycolumn);
+          case 20:
+            { return token(yytext(), "OPERADOR_MULTIPLICAR", yyline, yycolumn);
             }
             // fall through
           case 50: break;
-          case 22:
-            { return token(yytext(), "OPERADOR_INCREMENTO", yyline, yycolumn);
+          case 21:
+            { return token(yytext(), "COLOR", yyline, yycolumn);
             }
             // fall through
           case 51: break;
-          case 23:
-            { return token(yytext(), "OPERADOR_DECREMENTO", yyline, yycolumn);
+          case 22:
+            { return token(yytext(), "INICIO_CONDICIONAL", yyline, yycolumn);
             }
             // fall through
           case 52: break;
-          case 24:
-            { return token(yytext(), "SEGUIR_CONDICIONAL", yyline, yycolumn);
+          case 23:
+            { return token(yytext(), "OPERADOR_INCREMENTO", yyline, yycolumn);
             }
             // fall through
           case 53: break;
-          case 25:
-            { return token(yytext(), "OPERADOR_DIVIDIR", yyline, yycolumn);
+          case 24:
+            { return token(yytext(), "OPERADOR_DECREMENTO", yyline, yycolumn);
             }
             // fall through
           case 54: break;
-          case 26:
-            { return token(yytext(), "CICLO_DOWHILE", yyline, yycolumn);
+          case 25:
+            { return token(yytext(), "SEGUIR_CONDICIONAL", yyline, yycolumn);
             }
             // fall through
           case 55: break;
-          case 27:
-            { return token(yytext(), "OPERADOR_MENOS", yyline, yycolumn);
+          case 26:
+            { return token(yytext(), "OPERADOR_DIVIDIR", yyline, yycolumn);
             }
             // fall through
           case 56: break;
-          case 28:
-            { return token(yytext(), "CICLO_FOR", yyline, yycolumn);
+          case 27:
+            { return token(yytext(), "CICLO_DOWHILE", yyline, yycolumn);
             }
             // fall through
           case 57: break;
-          case 29:
-            { return token(yytext(), "CICLO_WHILE", yyline, yycolumn);
+          case 28:
+            { return token(yytext(), "OPERADOR_MENOS", yyline, yycolumn);
             }
             // fall through
           case 58: break;
+          case 29:
+            { return token(yytext(), "CICLO_FOR", yyline, yycolumn);
+            }
+            // fall through
+          case 59: break;
+          case 30:
+            { return token(yytext(), "CICLO_WHILE", yyline, yycolumn);
+            }
+            // fall through
+          case 60: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
