@@ -1,0 +1,18 @@
+F_FuncionSuma(
+Z @A EQU 1
+Z @B EQU 2!
+@A MAS @B!
+
+F_FuncionAnd()
+VOF @Y EQU v!
+VOF @1X EQU f!
+@Y  Y  @X!
+
+Ciclar(5) 
+@A MAS 1
+
+Cond(1,0,2
+Z @X EQU f!
+
+
+
