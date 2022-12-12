@@ -73,6 +73,9 @@ AZUL { return textColor(yychar, yylength(), new Color(116, 254, 1)); }
 
 /*OPERADORES DE AGRUPACION*/
 "<(" |
+"(" |
+")" |
+","|
 ")>" { return textColor(yychar, yylength(), new Color(214,88, 245)); }
 
 
@@ -107,7 +110,7 @@ v |
 f { return textColor(yychar, yylength(), new Color(255, 198, 6)); }
 
 /* FUNCION */
-{Letra}({Letra}|{Digito})*"()" { return textColor(yychar, yylength(), new Color(188, 254, 94)); }
+F_{Letra}({Letra}|{Digito})*  { return textColor(yychar, yylength(), new Color(188, 254, 94)); }
 
 /*ERRORES*/ 
 

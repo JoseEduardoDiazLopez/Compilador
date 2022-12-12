@@ -25,7 +25,7 @@ Comentario = {ComentarioTradicional} | {FinDeLineaComentario} | {ComentarioDeDoc
 /* Identificador */
 Letra = [A-Za-zÑñ_ÁÉÍÓÚáéíóúÜü]
 Digito = [0-9]
-A=[!¡]
+A=[!¡,]
 Identificador = {Letra}({Letra}|{Digito})*
 P=[.]
 /* Número */
@@ -89,6 +89,9 @@ AZUL { return token(yytext(), "COLOR", yyline, yycolumn); }
 /*PUNTUACION */
 "!" { return token(yytext(), "FIN_DE_SENTENCIA", yyline, yycolumn); }
 
+"," { return token(yytext(), "COMA", yyline, yycolumn); }
+"(" { return token(yytext(), "ABRE_PARENTESIS", yyline, yycolumn); }
+")" { return token(yytext(), "CIERRA_PARENTESIS", yyline, yycolumn); }
 /*PALABRAS RESERVADAS*/
 
 Cond { return token(yytext(), "INICIO_CONDICIONAL", yyline, yycolumn); }
@@ -104,7 +107,7 @@ v |
 f { return token(yytext(), "PALABRA_RESERVADA", yyline, yycolumn); }
 
 /* FUNCION */
-{Letra}({Letra}|{Digito})* "()" {return token(yytext(), "FUNCION", yyline, yycolumn); }
+F_{Letra}({Letra}|{Digito})* {return token(yytext(), "FUNCION", yyline, yycolumn); }
 
 /*ERRORES*/
 

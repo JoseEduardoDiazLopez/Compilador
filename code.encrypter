@@ -1,5 +1,7 @@
-Z @A EQU 1  
-Z    EQU 2!
-Z  @C  3!
+Z @A EQU 1 !
+Z   @B EQU 2!
+Z  @C EQU 3!
 Z @D EQU !
-Z
+Z !
+
+F_Cabrerapendejo()

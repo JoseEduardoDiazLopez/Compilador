@@ -361,16 +361,26 @@ public class Compilador extends javax.swing.JFrame {
            gramatica.group("VARIABLE","TIPO_DE_DATO IDENTIFICADOR OPERADOR_ASIGNACION VALORES FIN_DE_SENTENCIA",true);
            //No !
            gramatica.group("VARIABLE","TIPO_DE_DATO IDENTIFICADOR OPERADOR_ASIGNACION VALORES ",true,
-                   2,"Error sintáctico: falta ! en la declaracion de variable (Linea: # )");
+                   2,"Error sintáctico {}: falta ! en la declaracion de variable (Linea: # )");
            // no identificador
            gramatica.group("VARIABLE","TIPO_DE_DATO OPERADOR_ASIGNACION VALORES FIN_DE_SENTENCIA",true,
-                   2,"Error sintáctico: falta identificador en la declaracion (Linea: # )");
+                   3,"Error sintáctico {}: falta identificador en la declaracion (Linea: # )");
            //no valor
            gramatica.group("VARIABLE","TIPO_DE_DATO IDENTIFICADOR OPERADOR_ASIGNACION FIN_DE_SENTENCIA",true,
-                   2,"Error sintáctico: falta VALOR en la declaracion (Linea: # )");
+                   4,"Error sintáctico {}: falta VALOR en la declaracion (Linea: # )");
            //no op asignacion
            gramatica.group("VARIABLE","TIPO_DE_DATO IDENTIFICADOR VALORES FIN_DE_SENTENCIA",true,
-                   2,"Error sintáctico: falta operador de asignacion en la declaracion (Linea: # )");
+                   5,"Error sintáctico {}: falta operador de asignacion en la declaracion (Linea: # )");
+           //NO TIPO DE DATO
+           gramatica.group("VARIABLE","IDENTIFICADOR OPERADOR_ASIGNACION VALORES FIN_DE_SENTENCIA",true,
+                   6,"Error sintáctico {}: falta tipo de dato en la declaracion (Linea: # )");
+           
+           /* agrupar identificadores y parametros */
+           gramatica.group("VALORES", "IDENTIFICADOR",true);
+           gramatica.group("PARAMETROS", "VALOR{COMA VALOR}+");
+           
+           //FUNCIONES
+           gramatica.group("FUNCIONES", "FUNCION ABRE_PARENTESIS PARAMETROS CIERRA_PARENTESIS",true);
            
         /* Mostrar gramáticas */
         gramatica.show();
