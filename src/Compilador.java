@@ -86,8 +86,6 @@ public class Compilador extends javax.swing.JFrame {
         jtaOutputConsole = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblTokens = new javax.swing.JTable();
-        btnEjecutar = new javax.swing.JButton();
-        btnCompilar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -135,20 +133,6 @@ public class Compilador extends javax.swing.JFrame {
         tblTokens.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tblTokens);
 
-        btnEjecutar.setText("Ejecutar");
-        btnEjecutar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEjecutarActionPerformed(evt);
-            }
-        });
-
-        btnCompilar.setText("Compilar");
-        btnCompilar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompilarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout rootPanelLayout = new javax.swing.GroupLayout(rootPanel);
         rootPanel.setLayout(rootPanelLayout);
         rootPanelLayout.setHorizontalGroup(
@@ -159,13 +143,7 @@ public class Compilador extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
                     .addComponent(jScrollPane3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(rootPanelLayout.createSequentialGroup()
-                        .addComponent(btnCompilar)
-                        .addGap(101, 101, 101)
-                        .addComponent(btnEjecutar)
-                        .addGap(0, 251, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
                 .addContainerGap())
         );
         rootPanelLayout.setVerticalGroup(
@@ -178,10 +156,7 @@ public class Compilador extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
                     .addGroup(rootPanelLayout.createSequentialGroup()
-                        .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEjecutar)
-                            .addComponent(btnCompilar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(29, 29, 29)
                         .addComponent(jScrollPane2)))
                 .addContainerGap())
         );
@@ -253,32 +228,6 @@ public class Compilador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCompilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilarActionPerformed
-        if (getTitle().contains("*") || getTitle().equals(title)) {
-            if (directorio.Save()) {
-                compile();
-            }
-        } else {
-            compile();
-        }
-    }//GEN-LAST:event_btnCompilarActionPerformed
-
-    private void btnEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEjecutarActionPerformed
-        btnCompilar.doClick();
-        if (codeHasBeenCompiled) {
-            if (!errors.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "No se puede ejecutar el código ya que se encontró uno o más errores",
-                        "Error en la compilación", JOptionPane.ERROR_MESSAGE);
-            } else {
-                CodeBlock codeBlock = Functions.splitCodeInCodeBlocks(tokens, "{", "}", ";");
-                System.out.println(codeBlock);
-                ArrayList<String> blocksOfCode = codeBlock.getBlocksOfCodeInOrderOfExec();
-                System.out.println(blocksOfCode);
-
-            }
-        }
-    }//GEN-LAST:event_btnEjecutarActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
     
@@ -357,7 +306,7 @@ public class Compilador extends javax.swing.JFrame {
           /* Eliminar errores */
           gramatica.delete(new String[]{"ERROR_1","ERROR_2","ERROR_3"},1);
             /* agrupar valores */
-          gramatica.group("VALORES","(NUMERO | COLOR)",true);
+          gramatica.group("VALORES","(NUMERO | COLOR | VERDADERO | FALSO)",true);
            /* declarar variable */
            gramatica.group("VARIABLE","TIPO_DE_DATO IDENTIFICADOR OPERADOR_ASIGNACION VALORES FIN_DE_SENTENCIA",true);
            //No !
@@ -380,11 +329,43 @@ public class Compilador extends javax.swing.JFrame {
             gramatica.group("VALORES", "IDENTIFICADOR");
            gramatica.group("PARAMETROS", "VALORES (COMA VALORES)+");
            
-            //ASIGNAR VALOR A VARIABLE COMPUESTA
-           gramatica.group("VARIABLE2","TIPO_DE_DATO IDENTIFICADOR OPERADOR_ASIGNACION VALORES "
-                   + "(OPERADOR_MAS | OPERADOR_MENOS | OPERADOR_MULTIPLICAR | OPERADOR_DIVIDIR ) VALORES FIN_DE_SENTENCIA",true);
+           //ARITMETRICA
+           gramatica.group("OPERACION_ARITMETRICA", 
+                   "VALORES (OPERADOR_MAS | OPERADOR_MENOS | OPERADOR_MULTIPLICAR | OPERADOR_DIVIDIR) VALORES",true);
            
-           gramatica.group("INSTRUCIONES","(VARIABLE | VARIABLE2 | .)");
+           gramatica.group("OPERACION_ARITMETRICA", 
+                   "VALORES (OPERADOR_MAS | OPERADOR_MENOS | OPERADOR_MULTIPLICAR | OPERADOR_DIVIDIR) ",true,9,
+                   "Error sintáctico {}: falta un valor en la operacion de la (Linea: # )");
+           
+           gramatica.group("OPERACION_ARITMETRICA", 
+                   "(OPERADOR_MAS | OPERADOR_MENOS | OPERADOR_MULTIPLICAR | OPERADOR_DIVIDIR) VALORES",true,10,
+                   "Error sintáctico {}: falta un valor en la operacion de la (Linea: # )");
+           //LOGICAA
+           gramatica.group("VALORESL","VERDADERO FALSO",true);
+           
+           gramatica.group("OPERACION_LOGICA", 
+                   "VALORESL (OPERADOR_ADN | OPERADOR_OR | OPERADOR_DIFERENTEQUE) VALORESL",true);
+           gramatica.group("OPERACION_LOGICA", 
+                   "VALORESL (OPERADOR_ADN | OPERADOR_OR | OPERADOR_DIFERENTEQUE)",true,11,
+                   "Error sintáctico {}: falta un valor en la operacion de la (Linea: # )");
+           
+           gramatica.group("OPERACION_LOGICA", 
+                   "(OPERADOR_ADN | OPERADOR_OR | OPERADOR_DIFERENTEQUE) VALORESL)",true,12,
+                   "Error sintáctico {}: falta un valor en la operacion de la (Linea: # )");
+           
+            gramatica.group("OPERACION_LOGICA", 
+                   "(VALORES OPERADOR_ADN | OPERADOR_OR | OPERADOR_DIFERENTEQUE) VALORES)",true,12,
+                   "Error sintáctico {}: solo valores logicos para esta operacion (Linea: # )");
+            gramatica.group("OPERACION_LOGICA", 
+                   "(VALORES OPERADOR_ADN | OPERADOR_OR | OPERADOR_DIFERENTEQUE) VALORESL)",true,13,
+                   "Error sintáctico {}: solo valores logicos para esta operacion (Linea: # )");
+            
+             gramatica.group("OPERACION_LOGICA", 
+                   "(VALORESL OPERADOR_ADN | OPERADOR_OR | OPERADOR_DIFERENTEQUE) VALORES)",true,14,
+                   "Error sintáctico {}: solo valores logicos para esta operacion (Linea: # )");
+      
+           
+           
            
            //FUNCIONES
            gramatica.group("FUNCIONES", "FUNCION ABRE_PARENTESIS (VALORES | PARAMETROS)? CIERRA_PARENTESIS",true);
@@ -396,9 +377,19 @@ public class Compilador extends javax.swing.JFrame {
                    8,"Error sintáctico {}: falta cerrar parentesis  (Linea: # )");
            
            
+           //ESTRUCTURAS DE CONTROL
+           gramatica.group("ESTRUCTURA_CONTROL","(INICIO_CONDICIONAL | CICLO_FOR)");
            
+ gramatica.group("ESTRUCTURA_CONTROL_COMP","ESTRUCTURA_CONTROL ABRE_PARENTESIS (VALORES | PARAMETROS ) CIERRA_PARENTESIS ",true);
           
-           
+     gramatica.group("ESTRUCTURA_CONTROL_COMP","ESTRUCTURA_CONTROL ABRE_PARENTESIS (VALORES | PARAMETROS )  ",true,
+     15,"Error sintáctico {}: falta cerrar parentesis  (Linea: # )"); 
+      gramatica.group("ESTRUCTURA_CONTROL_COMP","ESTRUCTURA_CONTROL (VALORES | PARAMETROS ) CIERRA_PARENTESIS",true,
+     16,"Error sintáctico {}: falta abrir parentesis  (Linea: # )"); 
+     gramatica.group("ESTRUCTURA_CONTROL_COMP","ESTRUCTURA_CONTROL",true,
+     17,"Error sintáctico {}: faltan  parentesis ()  (Linea: # )"); 
+     gramatica.group("ESTRUCTURA_CONTROL_COMP","ESTRUCTURA_CONTROL ABRE_PARENTESIS CIERRA_PARENTESIS",true,
+     18,"Error sintáctico {}: faltan parametros o valores  (Linea: # )"); 
           
            
         /* Mostrar gramáticas */
@@ -486,8 +477,6 @@ public class Compilador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCompilar;
-    private javax.swing.JButton btnEjecutar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

@@ -101,9 +101,11 @@ Ciclar  { return token(yytext(), "CICLO_FOR", yyline, yycolumn); }
 Hacer  { return token(yytext(), "CICLO_DOWHILE", yyline, yycolumn); }
 Este |
 Devolver |
-CHANGE |
-v |
-f { return token(yytext(), "PALABRA_RESERVADA", yyline, yycolumn); }
+CHANGE 
+{ return token(yytext(), "PALABRA_RESERVADA", yyline, yycolumn); }
+
+"v"  { return token(yytext(), "VERDADERO", yyline, yycolumn); }
+"f" { return token(yytext(), "FALSO", yyline, yycolumn); }
 
 /* FUNCION */
 F_{Letra}({Letra}|{Digito})* {return token(yytext(), "FUNCION", yyline, yycolumn); }

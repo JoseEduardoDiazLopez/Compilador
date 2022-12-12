@@ -105,10 +105,10 @@ Ciclar  |
 Hacer  |
 Este |
 Devolver |
-CHANGE |
-v |
-f { return textColor(yychar, yylength(), new Color(255, 198, 6)); }
-
+CHANGE 
+ { return textColor(yychar, yylength(), new Color(255, 198, 6)); }
+"v"  { return textColor(yychar, yylength(), new Color(255, 198, 6)); }
+"f" { return textColor(yychar, yylength(), new Color(255, 198, 6)); }
 /* FUNCION */
 F_{Letra}({Letra}|{Digito})*  { return textColor(yychar, yylength(), new Color(188, 254, 94)); }
 
